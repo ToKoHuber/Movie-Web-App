@@ -1,9 +1,12 @@
-import Image from "next/image";
+import { ModeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 export default function Header() {
   return (
     <div className="w-[100vw] h-[59px] flex justify-center items-center">
-      <div className="w-[1280px] h-[36px] bg-slate-500 px-[16px] border-b-[1px] flex justify-between items-center">
+      <div className="w-[1280px] h-[36px] bg-slate-500 px-[16px] flex justify-between items-center">
         <div className="flex w-[92px] h-[20px] gap-2">
           <div>
             <svg
@@ -25,8 +28,16 @@ export default function Header() {
             Movie Z
           </div>
         </div>
-        <div></div>
-        <div></div>
+        <div className="flex gap-2">
+          <Button className="w-[97px] h-[36px]">Genre</Button>
+          <div className="flex items-center">
+            <Search className="-mr-8 relative size-4" />
+            <Input className="pl-10" placeholder="Search..." />
+          </div>
+        </div>
+        <div>
+          <ModeToggle className="w-[36px] h-[36px]" />
+        </div>
       </div>
     </div>
   );

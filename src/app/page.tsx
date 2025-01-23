@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { TOKEN } from "./utility/constants";
 import Header from "./component/Header";
+import { CarouselPlugin } from "./component/Scroll";
 
 export default async function Home() {
   const response = await fetch(
@@ -13,10 +14,12 @@ export default async function Home() {
     }
   );
   const data = await response.json();
+  console.log(data);
 
   return (
     <div>
       <Header />
+      <CarouselPlugin />
       <div className="flex flex-wrap gap-4 ">
         {data.results.map((data) => {
           return (
