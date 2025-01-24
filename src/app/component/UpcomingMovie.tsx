@@ -18,10 +18,10 @@ export default async function UpcomingMovies() {
     <div className="w-1437px h-[978px] px-[80px] flex flex-col gap-[32px]">
       <div className="w-[1277px] h-[36px] flex justify-between">
         <div>
-          <h3 className="font-600 text-[24px] leading-[32px]">Upcoming</h3>
+          <h3 className="font-semibold text-[24px] leading-[32px]">Upcoming</h3>
         </div>
         <div>
-          <p className="font-500 text-[14px] leading-[20px]">See more</p>
+          <p className="font-medium text-[14px] leading-[20px]">See more</p>
         </div>
       </div>
       <div className="w-[1277px] flex flex-wrap gap-[32px]">

@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 
 export default function MovieCard({ movie }: { movie: MovieType }) {
   return (
-    <div className="h-[439px] w-[229px] bg-[#F4F4F5] rounded-lg overflow-hidden">
+    <div className="h-[439px] w-[229.73px] bg-[#F4F4F5] rounded-lg overflow-hidden">
       <div>
         <Image
           alt="Upcoming Movie Image"
@@ -31,13 +31,15 @@ export default function MovieCard({ movie }: { movie: MovieType }) {
             />
           </svg>
           <div>
-            <p className="font-500 text-[14px] leading-[20px] text-[#09090B]">
+            <p className="font-medium text-[14px] leading-[20px] text-[#09090B]">
               {movie.vote_average}
-              <span className="font-400 text-[12px] leading-[16px]">/10</span>
+              <span className="font-normal text-[12px] leading-[16px]">
+                /10
+              </span>
             </p>
           </div>
         </div>
-        <div className="w-[213px] h-[56px] font-400 text-[18px] leading-[28px] text-[#09090B]">
+        <div className="w-[213px] h-[56px] font-normal text-[18px] leading-[28px] text-[#09090B]">
           {movie.original_title}
         </div>
       </div>
