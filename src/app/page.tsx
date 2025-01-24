@@ -1,7 +1,36 @@
-import Image from "next/image";
 import { TOKEN } from "./utility/constants";
 import Header from "./component/Header";
 import { CarouselPlugin } from "./component/Scroll";
+import MovieCardWide from "./component/MovieCardWide";
+import UpcomingMovies from "./component/UpcomingMovie";
+
+export type MovieType = {
+  adult: Boolean;
+  backdrop_path: string;
+  genre_ids: [];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: Boolean;
+  vote_average: number;
+  vote_count: number;
+};
+
+export type DataType = {
+  dates: {
+    maximum: string;
+    minimum: string;
+  };
+  page: number;
+  results: MovieType[];
+  total_pages: number;
+  total_results: number;
+};
 
 export default async function Home() {
   const response = await fetch(
@@ -15,47 +44,12 @@ export default async function Home() {
   );
   const data = await response.json();
   console.log(data);
-
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <Header />
-      <CarouselPlugin />
-      <div className="flex flex-wrap gap-4 ">
-        {data.results.map((data) => {
-          return (
-            <div className="flex flex-col gap-4 w-[375px] h-[510px] pl-[20px] pt-[20px] mb-10 justify-between">
-              <div>
-                <Image
-                  src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
-                  width={375}
-                  height={246}
-                />
-              </div>
-              <div className="flex justify-between content-between w-[335px] h-52px">
-                <div className="w-[252px] h-52px">
-                  <div className="font-normal text-[14px] leading-[20px] text-[#09090B]">
-                    Now Playing:
-                  </div>
-                  <div className="font-semibold text-[24px] leading-[32px] text-[#09090B]">
-                    {data.original_title}
-                  </div>
-                </div>
-                <div className="flex items-center h-[48px]">
-                  {data.vote_average}/10
-                </div>
-              </div>
-              <div className="w-[335px] h-100px text-[14px] leading-[20px] font-normal text-justify text-[#09090B ]">
-                {data.overview}
-              </div>
-              <div className="">
-                <button className="w-[145px] h-[40px] rounded-md p-[8px 16px] bg-[#18181B] text-[#FAFAFA] cursor-pointer">
-                  Watch Trailer
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <CarouselPlugin data={data} />
+      <UpcomingMovies />
+      {/* <MovieCardWide data={data} /> */}
     </div>
   );
 }
