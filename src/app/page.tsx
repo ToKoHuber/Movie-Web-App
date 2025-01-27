@@ -1,8 +1,10 @@
 import { TOKEN } from "./utility/constants";
 import Header from "./component/Header";
 import { CarouselPlugin } from "./component/Scroll";
-import MovieCardWide from "./component/MovieCardWide";
 import UpcomingMovies from "./component/UpcomingMovie";
+import PopularMovies from "./component/PopularMovie";
+import TopRatedMovies from "./component/TopRated";
+import Footer from "./component/Footer";
 
 export type MovieType = {
   adult: Boolean;
@@ -49,7 +51,9 @@ export default async function Home() {
       <Header />
       <CarouselPlugin data={data} />
       <UpcomingMovies />
-      {/* <MovieCardWide data={data} /> */}
+      <PopularMovies />
+      <TopRatedMovies />
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { MovieType } from "../page";
-import { Star } from "lucide-react";
 
 export default function MovieCard({ movie }: { movie: MovieType }) {
   return (
@@ -26,13 +25,13 @@ export default function MovieCard({ movie }: { movie: MovieType }) {
               d="M7.99967 1.33337L10.0597 5.50671L14.6663 6.18004L11.333 9.42671L12.1197 14.0134L7.99967 11.8467L3.87967 14.0134L4.66634 9.42671L1.33301 6.18004L5.93967 5.50671L7.99967 1.33337Z"
               fill="#FDE047"
               stroke="#FDE047"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <div>
             <p className="font-medium text-[14px] leading-[20px] text-[#09090B]">
-              {movie.vote_average}
+              {movie.vote_average.toFixed(1)}
               <span className="font-normal text-[12px] leading-[16px]">
                 /10
               </span>
