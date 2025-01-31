@@ -1,4 +1,4 @@
-import { TOKEN } from "../utility/constants";
+import { TOKEN } from "../../utility/constants";
 import MovieCard from "./MovieCard";
 
 export default async function TopRatedMovies() {
