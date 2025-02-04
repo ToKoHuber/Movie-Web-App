@@ -13,6 +13,18 @@ import {
 } from "@/components/ui/carousel";
 
 export function CarouselPlugin() {
+  // const response = await fetch(
+  //   "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+  //   {
+  //     headers: {
+  //       Authorization: `Bearer ${TOKEN}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   }
+  // );
+  // const data = await response.json();
+  // console.log(data);
+
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
@@ -37,8 +49,8 @@ export function CarouselPlugin() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="absolute left-[44px]" />
+      <CarouselNext className="absolute right-[44px]" />
     </Carousel>
   );
 }

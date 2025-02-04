@@ -1,11 +1,10 @@
 import { TOKEN } from "../utility/constants";
 import Header from "./_component/Header";
 import { CarouselPlugin } from "./_component/Scroll";
-import UpcomingMovies from "./_component/UpcomingMovie";
-import PopularMovies from "./_component/PopularMovie";
-import TopRatedMovies from "./_component/TopRated";
+import UpcomingMovies from "./_component/category/UpcomingMovie";
+import PopularMovies from "./_component/category/PopularMovie";
+import TopRatedMovies from "./_component/category/TopRated";
 import Footer from "./_component/Footer";
-import { Hero } from "./_component/scrollCopy";
 
 export type MovieType = {
   adult: Boolean;
@@ -51,7 +50,6 @@ export default async function Home() {
     <div className="flex flex-col items-center">
       <Header />
       <CarouselPlugin data={data} />
-      <Hero />
       <UpcomingMovies />
       <PopularMovies />
       <TopRatedMovies />
