@@ -29,7 +29,9 @@ export default function Header() {
           </div>
         </div>
         <div className="flex gap-2">
-          <Button className="w-[97px] h-[36px]">Genre</Button>
+          <Button variant="outline" className="w-[97px] h-[36px]">
+            Genre
+          </Button>
           <div className="flex items-center gap-3">
             <Search className="-mr-8 relative size-4" />
             <Input className="pl-10" placeholder="Search..." />

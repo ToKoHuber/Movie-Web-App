@@ -3,7 +3,6 @@
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -11,20 +10,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { MovieType } from "../page";
+import Image from "next/image";
+import { Star } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
-export function CarouselPlugin() {
-  // const response = await fetch(
-  //   "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
-  //   {
-  //     headers: {
-  //       Authorization: `Bearer ${TOKEN}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //   }
-  // );
-  // const data = await response.json();
-  // console.log(data);
-
+export function CarouselPlugin({
+  movies,
+}: {
+  movies: MovieType[];
+  index: number;
+}) {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
@@ -32,22 +34,83 @@ export function CarouselPlugin() {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full max-w-xs"
+      className="w-full h-[600px]"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
+      <CarouselContent className="">
+        {movies.map((movie, index) => {
+          return (
+            <CarouselItem key={index} className="relative">
+              <div className="w-[100vw] h-[600px] relative ">
+                <Image
+                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                  alt=""
+                  layout="fill" // This will make the image stretch to fill its container
+                  objectFit="cover" // Ensures the image covers the whole container
+                  objectPosition="center" // Centers the image
+                  // style={{ objectFit: "cover", objectPosition: "center" }}
+                />
+                <div className="left-[140px] top-[178px] absolute">
+                  <div>
+                    <div className="text-4 text-white font-[400] leading-[24px]">
+                      Now Playing:
+                    </div>
+                    <div className="text-[36px] text-[#fff] font-[700] leading-[40px] ">
+                      {movie.original_title}
+                    </div>
+                    <div className="flex">
+                      <Star className="size-[28px]" fill="#FDE047" />
+                      <h3 className="text-[18px] font-[600] leading-[28px] text-[#fafafa] ">
+                        {movie.vote_average.toFixed(1)}
+                        <span className="text-[#71717A] font-[400] text-[16px] leading-[24px] ">
+                          /10
+                        </span>
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="text-[16px] leading-[16px] text-[#fafafa] w-[310px] mt-[16px] ">
+                    {movie.overview}
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+
+              {/* <div
+                className="w-[100vw] h-[600px] relative "
+                style={{
+                  backgroundImage: `url(${`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}) `,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className=" w-[100vw] h-[600px] bg-[#000]/20 absolute"></div>
+
+                <div className=" left-[140px] top-[178px] absolute ">
+                  <h3 className="text-4 text-white font-[400] leading-[24px] ">
+                    Now Playing:
+                  </h3>
+                  <h1 className="text-[36px] text-[#fff] font-[700] leading-[40px] ">
+                    {movie.original_title}
+                  </h1>
+                  <div className="flex">
+                    <Star className="size-[28px]" fill="#FDE047" />
+                    <h3 className="text-[18px] font-[600] leading-[28px] text-[#fafafa] ">
+                      {movie.vote_average}
+                      <span className="text-[#71717A] font-[400] text-[16px] leading-[24px] ">
+                        /10
+                      </span>
+                    </h3>
+                  </div>
+                  <div className="text-[16px] leading-[16px] text-[#fafafa] w-[310px] mt-[16px] ">
+                    {movie.overview}
+                  </div>
+                </div>
+              </div> */}
+            </CarouselItem>
+          );
+        })}
       </CarouselContent>
       <CarouselPrevious className="absolute left-[44px]" />
       <CarouselNext className="absolute right-[44px]" />

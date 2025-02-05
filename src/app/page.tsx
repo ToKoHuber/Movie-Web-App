@@ -9,7 +9,7 @@ import Footer from "./_component/Footer";
 export type MovieType = {
   adult: Boolean;
   backdrop_path: string;
-  genre_ids: [];
+  genre_ids: number[];
   id: number;
   original_language: string;
   original_title: string;
@@ -49,7 +49,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col items-center">
       <Header />
-      <CarouselPlugin data={data} />
+      <CarouselPlugin movies={data.results} />
       <UpcomingMovies />
       <PopularMovies />
       <TopRatedMovies />
