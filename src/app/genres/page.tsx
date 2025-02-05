@@ -37,7 +37,10 @@ export default async function Genre() {
             <div className="flex flex-wrap w-[387px] h-[272px] gap-4 mt-4 ">
               {data.genres.map((movie) => {
                 return (
-                  <Badge className="py-[2px] pl-[10px] pr-1 h-[22px] rounded-full cursor-pointer">
+                  <Badge
+                    variant="outline"
+                    className="py-[2px] pl-[10px] pr-1 h-[22px] rounded-full cursor-pointer"
+                  >
                     {movie.name}
                     <ChevronRight className="w-4 h-4" stroke="white" />
                   </Badge>
