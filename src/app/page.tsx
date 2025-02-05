@@ -47,7 +47,7 @@ export default async function Home() {
   const data = await response.json();
   console.log(data);
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center gap-[52px]">
       <Header />
       <CarouselPlugin movies={data.results} />
       <UpcomingMovies />
