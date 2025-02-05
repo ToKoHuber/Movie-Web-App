@@ -45,7 +45,7 @@ export async function PopoverDemo() {
                   className="py-[2px] pl-[10px] pr-1 h-[22px] rounded-full cursor-pointer"
                 >
                   {movie.name}
-                  <ChevronRight className="w-4 h-4" stroke="white" />
+                  <ChevronRight className="size-4" />
                 </Badge>
 
                 // <p>{movie.name}</p>
