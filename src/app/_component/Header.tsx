@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { PopoverDemo } from "./Genre";
+import { useState } from "react";
 
 export default function Header() {
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <div className="w-[100vw] h-[59px] flex justify-center items-center">
       <div className="w-[1280px] h-[36px] px-[16px] flex justify-between items-center">
