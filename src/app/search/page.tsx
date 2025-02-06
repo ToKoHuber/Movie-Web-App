@@ -1,106 +1,176 @@
 "use client";
 
-import { fetchData } from "@/app/_components/FetchData";
-import { ConImg } from "@/utils/constants";
-import { MovieType, SearchMovie } from "@/utils/types";
+import { TOKEN } from "@/utility/constants";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import SearchPagination from "@/app/_component/SearchPagination";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { SearchFilter } from "../_components/SearchFilter";
-// import { MoviePagination } from "../_components/MoviePagination";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-export default function Search() {
+async function getMovies(query: string, page: number) {
+  const searchResponse = await fetch(
+    `https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US&page=${page}`,
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return searchResponse.json();
+}
+
+async function getGenres() {
+  const genresResponse = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?language=en",
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return genresResponse.json();
+}
+
+export default function SearchResults() {
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const value = searchParams.get("value");
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const query = searchParams.get("query") || "";
+  const genreIds = searchParams.get("genreIds") || "";
 
-  const [getSearched, setGetSearched] = useState<SearchMovie | null>(null);
+  const [searchData, setSearchData] = useState<any>(null);
+  const [filteredResults, setFilteredResults] = useState<any[]>([]);
+  const [genres, setGenres] = useState<any[]>([]);
 
   useEffect(() => {
-    const GetDatas = async () => {
-      const getSearched = await fetchData(
-        `/search/movie?query=${value}&language=en-US&page=1`
-      );
-      setGetSearched(getSearched);
+    const fetchData = async () => {
+      const genresData = await getGenres();
+      setGenres(genresData.genres);
+
+      const moviesData = await getMovies(query, currentPage);
+      setSearchData(moviesData);
+
+      // Filter results based on selected genres
+      if (genreIds) {
+        // const selectedGenres = genreIds.split(",").map( genres: number);
+        const filtered = moviesData.results.filter((movie: MovieType) =>
+          movie.genre_ids.some(
+            (genreId) => genreIds.includes(genreId)
+            // selectedGenres.some(genreId => movie.genre_ids.includes(genre)
+          )
+        );
+        setFilteredResults(filtered);
+      } else {
+        setFilteredResults(moviesData.results || []);
+      }
     };
-    GetDatas();
-  }, []);
+
+    fetchData();
+  }, [query, currentPage, genreIds]);
+
+  const onValueChange = (values: string[]) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (values.length > 0) {
+      params.set("genreIds", values.join(","));
+    } else {
+      params.delete("genreIds");
+    }
+    params.set("page", "1");
+    router.push(`/search?${params.toString()}`);
+  };
+
+  if (!searchData || !genres) return null;
 
   return (
-    <>
-      <div className="flex gap-11 justify-center">
-        <div>
-          <h2 className="text-[30px] leading-[36px] font-[600] mt-[52px] ">
-            Search results
-          </h2>
-          <h4 className=" flex gap-2 text-[20px] font-[600] leading-[28px] mt-8 ">
-            {getSearched?.total_results} results for &#34;{value}&#34;
-          </h4>
-          <div className="max-w-[806px] w-full flex justify-center flex-wrap gap-[48px]   mt-9 ">
-            {getSearched?.results?.map((movie: MovieType, index: number) => {
-              return (
-                <Link href={`/movieInfo/${movie.id}`} key={index}>
-                  <div className="rounded-lg overflow-hidden">
-                    <div>
-                      <Image
-                        src={ConImg + "w500/" + movie?.poster_path}
-                        alt=""
-                        className="h-[244px] w-[165px] "
-                        width={165}
-                        height={244}
-                      />
-                    </div>
-                    <div className="p-2 flex flex-col items-start w-[165px] bg-secondary h-[87px]">
-                      <h3 className="text-[14px] flex gap-1 mt-1 items-center">
-                        <img src="/star.svg" alt="" />
-                        {movie?.vote_average}
-                        <span className="text-[12px] font-[400] leading-[16px] text-[#71717A] ">
-                          /10
-                        </span>
-                      </h3>
-                      <h2 className="text-[16px] ">{movie?.original_title}</h2>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-            {/* <Pagination className="w-[100vw] flex justify-end mt-8">
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPrevious href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" isActive>
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationEllipsis />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination> */}
+    <div className="px-[20px] max-w-[1280px] mx-auto">
+      <div className="flex gap-8">
+        {/* Left side - Movies */}
+        <div className="flex-1">
+          <h1 className="text-[24px] font-semibold mb-8">
+            Search Results for "{query}"
+          </h1>
 
-            <div className="max-w-[1277px] w-full flex justify-end ">
-              {/* <MoviePagination
-                          totalPages={selectGenres?.total_pages || 10}
-                          currentPage={selectGenres?.page || 1}
-                        /> */}
+          <div className="w-[806px] items-start flex flex-wrap self-stretch gap-8">
+            {filteredResults.map((movie: MovieType) => (
+              <Link key={movie.id} href={`/${movie.id}`}>
+                <div className="bg-secondary rounded-[8px] overflow-hidden w-[160px] h-[320px] cursor-pointer hover:opacity-50 easin">
+                  <Image
+                    className="object-cover w-[160px] h-[230px]"
+                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                    alt={`Poster of ${movie.original_title}`}
+                    width={160}
+                    height={230}
+                  />
+                  <div className="flex p-2 flex-col items-start">
+                    <div className="flex gap-[2px] items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M7.99992 1.33325L10.0599 5.50659L14.6666 6.17992L11.3333 9.42659L12.1199 14.0133L7.99992 11.8466L3.87992 14.0133L4.66658 9.42659L1.33325 6.17992L5.93992 5.50659L7.99992 1.33325Z"
+                          fill="yellow"
+                          stroke="blue"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <p>
+                        {movie.vote_average.toFixed(1)}
+                        <span className="text-[#71717a] text-[12px]">/10</span>
+                      </p>
+                    </div>
+                    <p className="text-wrap">
+                      {movie.original_title.length > 25
+                        ? movie.original_title.substring(0, 25) + "..."
+                        : movie.original_title}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <SearchPagination
+            currentPage={currentPage}
+            totalPages={searchData.total_pages}
+          />
+        </div>
+
+        {/* Right side - Genres */}
+        <div className="w-[400px] shrink-0">
+          <div className="sticky top-24">
+            <div className="w-[213px] flex flex-col items-start gap-1 mb-6">
+              <p className="text-[24px] font-semibold">Genres</p>
+              <p className="text-[16px] font-normal">
+                Filter search results by genre
+              </p>
             </div>
+            <ToggleGroup
+              onValueChange={onValueChange}
+              type="multiple"
+              defaultValue={genreIds.split(",")}
+              className="w-[387px] flex items-start content-start gap-4 flex-wrap justify-start"
+            >
+              {genres?.map((d: GenreType) => (
+                <ToggleGroupItem
+                  value={d.id.toString()}
+                  key={d.id}
+                  className="w-[87px] gap-4"
+                >
+                  {d.name}
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
           </div>
         </div>
-        <div>
-          <SearchFilter />
-        </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,12 +1,15 @@
+// "use client";
+
 import { ModeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { PopoverDemo } from "./Genre";
 import { useState } from "react";
+import SearchInput from "./SearchInput";
 
 export default function Header() {
-  const [searchValue, setSearchValue] = useState("");
+  // const [searchValue, setSearchValue] = useState("");
 
   return (
     <div className="w-[100vw] h-[59px] flex justify-center items-center">
@@ -34,10 +37,12 @@ export default function Header() {
         </div>
         <div className="flex gap-2">
           <PopoverDemo />
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <Search className="-mr-8 relative size-4" />
+            
             <Input className="pl-10" placeholder="Search..." />
-          </div>
+          </div> */}
+          <SearchInput />
         </div>
         <div>
           <ModeToggle />
