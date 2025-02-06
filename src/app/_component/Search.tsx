@@ -7,8 +7,8 @@ export default function Search() {
       <div>
         <Image
           src="/profile.png"
-          width={500}
-          height={500}
+          width={67}
+          height={100}
           alt="Picture of the author"
         />
       </div>
