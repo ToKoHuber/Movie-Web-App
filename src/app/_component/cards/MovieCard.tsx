@@ -1,9 +1,12 @@
 import Image from "next/image";
-import { MovieType } from "../page";
+import Link from "next/link";
 
 export default function MovieCard({ movie }: { movie: MovieType }) {
   return (
-    <div className="h-[439px] w-[229.73px] bg-[#F4F4F5] rounded-lg overflow-hidden">
+    <Link
+      className="h-[439px] w-[229.73px] bg-[#F4F4F5] rounded-lg overflow-hidden"
+      href={`details/${movie.id}`}
+    >
       <div>
         <Image
           alt="Upcoming Movie Image"
@@ -42,6 +45,6 @@ export default function MovieCard({ movie }: { movie: MovieType }) {
           {movie.original_title}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

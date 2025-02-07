@@ -82,7 +82,7 @@ const SearchInput = () => {
         >
           {searchResults?.slice(0, 5).map((movie: MovieType, index: number) => (
             <Link
-              href={`/search/${movie.id}`}
+              href={`/details/${movie.id}`}
               key={index}
               onClick={() => clearInput()}
             >
