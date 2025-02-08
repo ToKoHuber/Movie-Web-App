@@ -4,12 +4,15 @@ import { MovieType } from "../page";
 export default function MoviePosterSmall({ movie }: { movie: MovieType }) {
   return (
     <div className="h-[372px] w-[190px] bg-[#F4F4F5] rounded-lg overflow-hidden">
-      <div>
+      <div className="w-[190px] h-[281.381px]">
         <Image
           alt="Upcoming Movie Image"
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           width={190}
           height={281.381}
+          // layout="fill" // This will make the image stretch to fill its container
+          // objectFit="cover" // Ensures the image covers the whole container
+          // objectPosition="center" // Centers the image
         />
       </div>
       <div className="flex flex-col gap-[10px] p-2">
