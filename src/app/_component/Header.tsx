@@ -7,6 +7,7 @@ import { Search } from "lucide-react";
 import { PopoverDemo } from "./Genre";
 import { useState } from "react";
 import SearchInput from "./SearchInput";
+import Link from "next/link";
 
 export default function Header() {
   // const [searchValue, setSearchValue] = useState("");
@@ -14,7 +15,7 @@ export default function Header() {
   return (
     <div className="w-[100vw] h-[59px] flex justify-center items-center">
       <div className="w-[1280px] h-[36px] px-[16px] flex justify-between items-center">
-        <div className="flex w-[92px] h-[20px] gap-2">
+        <Link href="/" className="flex w-[92px] h-[20px] gap-2 cursor-pointer">
           <div>
             <svg
               width="20"
@@ -34,7 +35,7 @@ export default function Header() {
           <div className="font-700 italic text-[16px] leading-[20px] text-[#4338CA]">
             Movie Z
           </div>
-        </div>
+        </Link>
         <div className="flex gap-2">
           <PopoverDemo />
           {/* <div className="flex items-center gap-3">

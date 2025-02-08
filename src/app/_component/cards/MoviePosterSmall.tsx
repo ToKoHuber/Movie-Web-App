@@ -1,9 +1,13 @@
 import Image from "next/image";
-import { MovieType } from "../page";
+import { MovieType } from "@/app/page";
+import Link from "next/link";
 
 export default function MoviePosterSmall({ movie }: { movie: MovieType }) {
   return (
-    <div className="h-[372px] w-[190px] bg-[#F4F4F5] rounded-lg overflow-hidden">
+    <Link
+      href={`/details/${movie.id}`}
+      className="h-[372px] w-[190px] bg-[#F4F4F5] rounded-lg overflow-hidden"
+    >
       <div className="w-[190px] h-[281.381px]">
         <Image
           alt="Upcoming Movie Image"
@@ -45,6 +49,6 @@ export default function MoviePosterSmall({ movie }: { movie: MovieType }) {
           {movie.original_title}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

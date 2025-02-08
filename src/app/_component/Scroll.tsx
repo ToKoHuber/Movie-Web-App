@@ -20,6 +20,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function CarouselPlugin({
   movies,
@@ -41,45 +42,47 @@ export function CarouselPlugin({
       <CarouselContent className="">
         {movies.map((movie, index) => {
           return (
-            <CarouselItem key={index} className="relative">
-              <div className="w-[100vw] h-[600px] relative ">
-                <Image
-                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                  alt=""
-                  layout="fill" // This will make the image stretch to fill its container
-                  objectFit="cover" // Ensures the image covers the whole container
-                  objectPosition="center" // Centers the image
-                />
-                <div className=" w-[100vw] h-[600px] bg-[#000]/20 absolute"></div>
+            <Link href={`/details/${movie.id}`} key={index}>
+              <CarouselItem key={index} className="relative">
+                <div className="w-[100vw] h-[600px] relative ">
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                    alt=""
+                    layout="fill" // This will make the image stretch to fill its container
+                    objectFit="cover" // Ensures the image covers the whole container
+                    objectPosition="center" // Centers the image
+                  />
+                  <div className=" w-[100vw] h-[600px] bg-[#000]/20 absolute"></div>
 
-                <div className="left-[140px] top-[178px] absolute">
-                  <div>
-                    <div className="text-4 text-white font-[400] leading-[24px]">
-                      Now Playing:
+                  <div className="left-[140px] top-[178px] absolute">
+                    <div>
+                      <div className="text-4 text-white font-[400] leading-[24px]">
+                        Now Playing:
+                      </div>
+                      <div className="text-[36px] text-[#fff] font-[700] leading-[40px] ">
+                        {movie.original_title}
+                      </div>
+                      <div className="flex">
+                        <Star
+                          className="size-[28px]"
+                          fill="#FDE047"
+                          stroke="none"
+                        />
+                        <h3 className="text-[18px] font-[600] leading-[28px] text-[#fafafa] ">
+                          {movie.vote_average.toFixed(1)}
+                          <span className="text-[#71717A] font-[400] text-[16px] leading-[24px] ">
+                            /10
+                          </span>
+                        </h3>
+                      </div>
                     </div>
-                    <div className="text-[36px] text-[#fff] font-[700] leading-[40px] ">
-                      {movie.original_title}
+                    <div className="text-[16px] leading-[16px] text-[#fafafa] w-[310px] mt-[16px] ">
+                      {movie.overview}
                     </div>
-                    <div className="flex">
-                      <Star
-                        className="size-[28px]"
-                        fill="#FDE047"
-                        stroke="none"
-                      />
-                      <h3 className="text-[18px] font-[600] leading-[28px] text-[#fafafa] ">
-                        {movie.vote_average.toFixed(1)}
-                        <span className="text-[#71717A] font-[400] text-[16px] leading-[24px] ">
-                          /10
-                        </span>
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="text-[16px] leading-[16px] text-[#fafafa] w-[310px] mt-[16px] ">
-                    {movie.overview}
                   </div>
                 </div>
-              </div>
-            </CarouselItem>
+              </CarouselItem>
+            </Link>
           );
         })}
       </CarouselContent>

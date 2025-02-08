@@ -21,9 +21,7 @@ export function MovieDescription({
           );
         })}
       </div>
-      <div className="text-4 font-normal leading-6 text-[#09090B]">
-        {movieJson.overview}
-      </div>
+      <div className="text-4 font-normal leading-6">{movieJson.overview}</div>
       <div className="flex flex-col gap-5">
         <div className="flex gap-[53px]">
           <div className="w-[64px] text-4 font-bold leading-[28px]">
