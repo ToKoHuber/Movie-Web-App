@@ -1,5 +1,5 @@
 import { TOKEN } from "@/utility/constants";
-import MovieCard from "@/app/_component/cards/MovieCardBig";
+import MovieCard from "@/app/_component/cards/MoviePosterBig";
 
 export default async function UpcomingMovies() {
   const response = await fetch(

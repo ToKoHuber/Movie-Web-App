@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Footer from "@/app/_component/Footer";
 import MoviePosterSmall from "@/app/_component/cards/MoviePosterSmall";
+import { PaginationPage } from "@/app/_component/SearchPagination";
+import { GenrePageFilter } from "@/app/_component/Genre";
 
 export default async function Genre({
   params,
@@ -12,7 +14,7 @@ export default async function Genre({
   params: Promise<{ genreId: string }>;
 }) {
   const genreId = (await params).genreId;
-  const response = await fetch(
+  const genreList = await fetch(
     "https://api.themoviedb.org/3" + `/genre/movie/list?language=en`,
     {
       headers: {
@@ -21,7 +23,7 @@ export default async function Genre({
       },
     }
   );
-  const data = await response.json();
+  const genreListJson = await genreList.json();
   // console.log(data);
 
   const genreIds = await fetch(
@@ -46,34 +48,7 @@ export default async function Genre({
           </h2>
         </div>
         <div className="flex justify-between">
-          <div>
-            <div>
-              <div className="text-[24px] font-[600] leading-[32px] ">
-                Genres
-              </div>
-              <div className="text-[16px] font-[400] leading-[24px] mt-1 border-b-[1px] pb-4 border-border">
-                <p>See lists of movies by genre</p>
-              </div>
-            </div>
-            <ToggleGroup
-              type="multiple"
-              variant="outline"
-              className="flex flex-wrap w-[387px] h-[272px] gap-4 mt-4 justify-start"
-            >
-              {data.genres.map((genre: GenreType) => (
-                <Link key={genre.id} href={`/genres/${genre.id}`}>
-                  <ToggleGroupItem
-                    value={genre.name}
-                    aria-label={`Toggle ${genre.name}`}
-                    className="py-[2px] pl-[10px] pr-1 h-[22px] rounded-full cursor-pointer flex items-center gap-1"
-                  >
-                    {genre.name}
-                    <ChevronRight className="size-4" />
-                  </ToggleGroupItem>
-                </Link>
-              ))}
-            </ToggleGroup>
-          </div>
+          <GenrePageFilter genreListJson={genreListJson.genres} />
           <div className="w-[806px] flex flex-col gap-8">
             <div className="font-semibold text-5 leading-[28px">
               81 titles in “Animation”
@@ -83,6 +58,7 @@ export default async function Genre({
                 return <MoviePosterSmall movie={movie} />;
               })}
             </div>
+            <PaginationPage />
             <div></div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { TOKEN } from "../utility/constants";
 import Header from "./_component/Header";
-import { CarouselPlugin } from "./_component/Scroll";
+import { CarouselPlugin } from "./_component/Carousel";
 import UpcomingMovies from "./_component/category/UpcomingMovie";
 import PopularMovies from "./_component/category/PopularMovie";
 import TopRatedMovies from "./_component/category/TopRated";

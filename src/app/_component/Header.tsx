@@ -4,7 +4,7 @@ import { ModeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { PopoverDemo } from "./Genre";
+import { PopoverDemo } from "./GenreButton";
 import { useState } from "react";
 import SearchInput from "./SearchInput";
 import Link from "next/link";

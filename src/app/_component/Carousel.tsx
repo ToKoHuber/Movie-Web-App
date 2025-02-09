@@ -13,13 +13,6 @@ import {
 import { MovieType } from "../page";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export function CarouselPlugin({
