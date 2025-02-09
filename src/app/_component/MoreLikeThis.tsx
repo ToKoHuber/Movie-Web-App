@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import MoviePosterSmall from "./cards/MoviePosterSmall";
+import MoviePosterSmall from "./cards/MoviePosterMedium";
 import { Button } from "@/components/ui/button";
 
 export function MoreLikeThis({

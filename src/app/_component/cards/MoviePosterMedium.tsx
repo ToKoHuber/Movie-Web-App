@@ -2,24 +2,24 @@ import Image from "next/image";
 import { MovieType } from "@/app/page";
 import Link from "next/link";
 
-export default function MoviePosterSmall({ movie }: { movie: MovieType }) {
+export default function MoviePosterMedium({ movie }: { movie: MovieType }) {
   return (
     <Link
       href={`/details/${movie.id}`}
-      className="h-[331px] w-[165px] bg-[#F4F4F5] rounded-lg overflow-hidden"
+      className="h-[372px] w-[190px] bg-[#F4F4F5] rounded-lg overflow-hidden"
     >
-      <div className="w-[165px] h-[244px]">
+      <div className="w-[190px] h-[281.381px]">
         <Image
           alt="Upcoming Movie Image"
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          width={165}
-          height={244}
+          width={190}
+          height={281.381}
           // layout="fill" // This will make the image stretch to fill its container
           // objectFit="cover" // Ensures the image covers the whole container
           // objectPosition="center" // Centers the image
         />
       </div>
-      <div className="flex flex-col py-1 px-2">
+      <div className="flex flex-col gap-[10px] p-2">
         <div className="flex gap-1 items-center">
           <svg
             width="16"
@@ -45,7 +45,7 @@ export default function MoviePosterSmall({ movie }: { movie: MovieType }) {
             </p>
           </div>
         </div>
-        <div className="w-[149px] font-normal text-[16px] leading-[28px] text-[#09090B]">
+        <div className="w-[174px] h-[56px] font-normal text-[18px] leading-[28px] text-[#09090B]">
           {movie.original_title}
         </div>
       </div>

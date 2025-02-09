@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/popover";
 import { TOKEN } from "@/utility/constants";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export async function PopoverDemo() {
   const response = await fetch(
@@ -36,17 +37,18 @@ export async function PopoverDemo() {
             </div>
           </div>
           <div className="flex flex-wrap w-[537px] gap-4 mt-4 ">
-            {data.genres.map((movie) => {
+            {data.genres.map((genre: GenreType) => {
+              console.log(genre);
               return (
-                <Badge
-                  variant="outline"
-                  className="py-[2px] pl-[10px] pr-1 h-[22px] rounded-full cursor-pointer"
-                >
-                  {movie.name}
-                  <ChevronRight className="size-4" />
-                </Badge>
-
-                // <p>{movie.name}</p>
+                <Link key={genre.id} href={`/genres/${genre.id}`}>
+                  <Badge
+                    variant="outline"
+                    className="py-[2px] pl-[10px] pr-1 h-[22px] rounded-full cursor-pointer"
+                  >
+                    {genre.name}
+                    <ChevronRight className="size-4" />
+                  </Badge>
+                </Link>
               );
             })}
           </div>
