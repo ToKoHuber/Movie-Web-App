@@ -133,12 +133,18 @@ const SearchInput = () => {
               <div className="w-[550px] h-[1.5px] my-1 dark:bg-gray-700 bg-[#efefef]"></div>
             </Link>
           ))}
-          <button
-            onClick={handleSeeAllResults}
-            className="w-full mt-2 p-2 text-center hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer"
+          <Link
+            href={`/seeMore?value=${encodeURIComponent(searchValue)}`}
+            passHref
+            // энэ хэсэг дээр хуудасруугаа шилжээ датагаа дамжуулах map харах
           >
-            See all results for "{searchValue}"
-          </button>
+            <button
+              onClick={handleSeeAllResults}
+              className="w-full mt-2 p-2 text-center hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer"
+            >
+              See all results for "{searchValue}"
+            </button>
+          </Link>
         </div>
       ) : searchValue.length > 1 && searchResults.length === 0 ? (
         <div className="absolute mt-4 z-10 bg-white p-8 rounded-lg border dark:bg-[#09090B] dark:border-[#27272a]">
