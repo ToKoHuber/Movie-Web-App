@@ -47,12 +47,10 @@ const Page = async ({ params }: { params: Promise<{ movieId: string }> }) => {
 
   return (
     <div className="flex flex-col items-center gap-[52px]">
-      <Header />
       <DetailsTitle movieJson={movieJson} />
       <DetailPosterVideo movieJson={movieJson} />
       <MovieDescription movieJson={movieJson} movieProdJson={movieProdJson} />
       <MoreLikeThis moreLikeThisDataJson={moreLikeThisDataJson} />
-      <Footer />
     </div>
   );
 };

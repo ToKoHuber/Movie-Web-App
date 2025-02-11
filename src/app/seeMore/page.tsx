@@ -1,5 +1,3 @@
-"use client";
-
 import MoviePosterSmall from "@/app/_component/cards/MoviePosterSmall";
 import { GenrePageFilter } from "@/app/_component/Genre";
 import Header from "@/app/_component/Header";
@@ -8,10 +6,12 @@ import { TOKEN } from "@/utility/constants";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-export default async function SeeMore() {
-  const searchParams = useSearchParams();
-  const value = searchParams.get("value");
-
+export default async function SeeMore({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { value } = await searchParams;
   const genreList = await fetch(
     "https://api.themoviedb.org/3" + `/genre/movie/list?language=en`,
     {
@@ -38,7 +38,6 @@ export default async function SeeMore() {
   // console.log(searchDataJson);
   return (
     <div className="flex flex-col items-center">
-      <Header />
       <div>
         <div>
           <h2>Search Results</h2>

@@ -48,12 +48,10 @@ export default async function Home() {
   console.log(data);
   return (
     <div className="flex flex-col items-center gap-[52px]">
-      <Header />
       <CarouselPlugin movies={data.results} />
       <UpcomingMovies />
       <PopularMovies />
       <TopRatedMovies />
-      <Footer />
     </div>
   );
 }

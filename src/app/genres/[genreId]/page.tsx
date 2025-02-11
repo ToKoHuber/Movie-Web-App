@@ -40,7 +40,6 @@ export default async function Genre({
   console.log(genreData);
   return (
     <div className="flex flex-col items-center">
-      <Header />
       <div className="w-[1280px] flex flex-col mt-[52px] justify-center gap-8">
         <div>
           <h2 className="text-[30px] leading-[36px] font-bold text-[#09090B] text-foreground ">
@@ -63,7 +62,6 @@ export default async function Genre({
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
