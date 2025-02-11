@@ -1,6 +1,7 @@
 import MoviePosterSmall from "@/app/_component/cards/MoviePosterSmall";
 import { GenrePageFilter } from "@/app/_component/Genre";
 import Header from "@/app/_component/Header";
+import { Separator } from "@/components/ui/separator";
 import { TOKEN } from "@/utility/constants";
 // import { console } from "inspector";
 import { useSearchParams } from "next/navigation";
@@ -37,21 +38,27 @@ export default async function SeeMore({
 
   // console.log(searchDataJson);
   return (
-    <div className="flex flex-col items-center">
-      <div>
-        <div>
-          <h2>Search Results</h2>
+    <div className="flex flex-col items-center ">
+      <div className="w-[1280px] flex flex-col gap-8">
+        <div className="w-[1280px]">
+          <h2 className="text-[30px] font-semibold leading-[36px]">
+            Search Results
+          </h2>
         </div>
-        <div className="flex w-[1080px] justify-between">
-          <div>
-            <p>5 results for MovieName</p>
-            <p>{value}</p>
+
+        <div className="flex w-[1280px] justify-between gap-7">
+          <div className="w-[804px] flex flex-col gap-8">
+            <p className="text-4 font-semibold leading-7">
+              {searchDataJson.results.length} results for "{value}"
+            </p>
+
             <div className="w-[804px] flex flex-wrap gap-12">
               {searchDataJson.results.map((movie: MovieType) => {
                 return <MoviePosterSmall movie={movie} />;
               })}
             </div>
           </div>
+          <Separator orientation="vertical" />
           <GenrePageFilter genreListJson={genreListJson.genres} />
         </div>
       </div>
