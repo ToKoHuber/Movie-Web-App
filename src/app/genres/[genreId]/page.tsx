@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Footer from "@/app/_component/Footer";
 import MoviePosterSmall from "@/app/_component/cards/MoviePosterSmall";
-import { PaginationPage } from "@/app/_component/SearchPagination";
 import { GenrePageFilter } from "@/app/_component/Genre";
 
 export default async function Genre({
@@ -57,7 +56,7 @@ export default async function Genre({
                 return <MoviePosterSmall movie={movie} />;
               })}
             </div>
-            <PaginationPage />
+            {/* <PaginationPage /> */}
             <div></div>
           </div>
         </div>
