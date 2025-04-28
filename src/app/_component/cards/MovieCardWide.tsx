@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MovieCardData, MovieType } from "@/utility/types";
+import { MovieType, MovieCardData } from "@/utility/types";
 
 export default function MovieCard({ data }: {data: MovieCardData}) {
   return (

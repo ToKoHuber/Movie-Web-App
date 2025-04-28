@@ -18,6 +18,16 @@ export type MovieType = {
   name: string;
 };
 
+// In your types file, e.g., "@/utility/types.ts"
+export type MovieDetailType = {
+  id: number;
+  original_title: string;
+  backdrop_path: string;
+  vote_average: number;
+  overview: string;
+};
+
+
 export type MovieCardData = {
   results: MovieType[]; // An array of MovieType objects
 };
