@@ -18,7 +18,9 @@ export type MovieType = {
   name: string;
 };
 
-
+export type MovieCardData = {
+  results: MovieType[]; // An array of MovieType objects
+};
 
 export type GenreType = {
   id: number;

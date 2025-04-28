@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { MovieType } from "@/utility/types";
+import { MovieCardData, MovieType } from "@/utility/types";
 
-export default function MovieCard({ data }) {
+export default function MovieCard({ data }: {data: MovieCardData}) {
   return (
     <div className="flex flex-wrap gap-10">
       {data.results.map((movie: MovieType) => {
