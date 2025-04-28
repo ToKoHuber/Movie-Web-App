@@ -137,10 +137,10 @@ export default function SearchResults() {
             ))}
           </div>
 
-          <SearchPagination
+          {/* <SearchPagination
             currentPage={currentPage}
             totalPages={searchData.total_pages}
-          />
+          /> */}
         </div>
 
         {/* Right side - Genres */}
