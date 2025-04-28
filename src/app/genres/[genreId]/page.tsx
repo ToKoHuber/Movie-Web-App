@@ -6,6 +6,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Footer from "@/app/_component/Footer";
 import MoviePosterSmall from "@/app/_component/cards/MoviePosterSmall";
 import { GenrePageFilter } from "@/app/_component/Genre";
+import { MovieType } from "@/utility/types";
 
 export default async function Genre({
   params,

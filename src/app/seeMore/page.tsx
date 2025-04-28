@@ -2,6 +2,7 @@ import MoviePosterSmall from "@/app/_component/cards/MoviePosterSmall";
 import { GenrePageFilter } from "@/app/_component/Genre";
 import Header from "@/app/_component/Header";
 import { TOKEN } from "@/utility/constants";
+import { MovieType } from "@/utility/types";
 // import { console } from "inspector";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";

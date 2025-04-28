@@ -1,3 +1,4 @@
+import { MovieType } from "@/utility/types";
 import Image from "next/image";
 
 export function DetailPosterVideo({ movieJson }: { movieJson: MovieType }) {

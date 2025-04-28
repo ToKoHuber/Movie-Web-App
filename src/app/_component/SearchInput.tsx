@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Fetchdata from "@/utility/inputData";
-import { MovieType } from "../page";
+import { MovieType } from "@/utility/types";
 
 const SearchInput = () => {
   const [searchValue, setSearchValue] = useState("");

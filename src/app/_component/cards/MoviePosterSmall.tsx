@@ -1,5 +1,5 @@
+import { MovieType } from "@/utility/types";
 import Image from "next/image";
-import { MovieType } from "@/app/page";
 import Link from "next/link";
 
 export default function MoviePosterSmall({ movie }: { movie: MovieType }) {

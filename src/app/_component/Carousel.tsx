@@ -10,10 +10,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { MovieType } from "../page";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import Link from "next/link";
+import { MovieType } from "@/utility/types";
 
 export function CarouselPlugin({
   movies,

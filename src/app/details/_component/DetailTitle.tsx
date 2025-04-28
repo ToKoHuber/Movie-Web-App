@@ -1,3 +1,4 @@
+import { MovieType } from "@/utility/types";
 import { Star } from "lucide-react";
 
 export function DetailsTitle({ movieJson }: { movieJson: MovieType }) {

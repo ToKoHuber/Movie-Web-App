@@ -1,3 +1,4 @@
+import { MovieType } from "@/utility/types";
 import { TOKEN } from "../../../utility/constants";
 import MovieCard from "@/app/_component/cards/MoviePosterBig";
 
@@ -25,7 +26,7 @@ export default async function PopularMovies() {
         </div>
       </div>
       <div className="w-[1277px] flex flex-wrap gap-[32px]">
-        {data.results.slice(0, 10).map((movie) => {
+        {data.results.slice(0, 10).map((movie: MovieType) => {
           return <MovieCard movie={movie} />;
         })}
       </div>

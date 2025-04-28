@@ -2,6 +2,7 @@ export type MovieType = {
   adult: boolean;
   backdrop_path: string;
   genre_ids: [];
+  genres: Genre[];
   id: number;
   original_language: string;
   original_title: string;
@@ -16,6 +17,17 @@ export type MovieType = {
   job: string;
   type: string;
   name: string;
+};
+
+export type DataType = {
+  dates: {
+    maximum: string;
+    minimum: string;
+  };
+  page: number;
+  results: MovieType[];
+  total_pages: number;
+  total_results: number;
 };
 
 // In your types file, e.g., "@/utility/types.ts"
@@ -43,10 +55,19 @@ type CrewType = {
   name: string;
 };
 
-type CastType = {
+export type Genre = {
   id: number;
   name: string;
 };
+
+export type CastType = {
+  id: number;
+  name: string;
+  department: string;
+  known_for_department: string;
+};
+
+
 type Trailer = {
   id: string;
   type: string;
@@ -57,7 +78,8 @@ type Genres = {
   id: number;
   total_results: number;
 };
-type Genre = {
-  id: number;
-  name: string;
+
+export type MovieProductionType = {
+  cast: CastType[];  // Array of cast members
+  crew: CastType[];  // Array of crew members
 };

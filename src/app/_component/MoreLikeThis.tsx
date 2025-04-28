@@ -1,11 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import MoviePosterSmall from "./cards/MoviePosterMedium";
 import { Button } from "@/components/ui/button";
+import { MovieType } from "@/utility/types";
 
 export function MoreLikeThis({
   moreLikeThisDataJson,
 }: {
-  moreLikeThisDataJson: MovieType;
+  moreLikeThisDataJson: MovieType[]; // moreLikeThisDataJson is an array of MovieType objects
 }) {
   return (
     <div className="flex flex-col gap-8">
@@ -17,11 +18,9 @@ export function MoreLikeThis({
         </div>
       </div>
       <div className="w-[1080px] flex gap-8">
-        {moreLikeThisDataJson.results
-          .map((movie) => {
-            return <MoviePosterSmall movie={movie} />;
-          })
-          .slice(0, 5)}
+        {moreLikeThisDataJson.slice(0, 5).map((movie: MovieType) => {
+          return <MoviePosterSmall key={movie.id} movie={movie} />;
+        })}
       </div>
     </div>
   );

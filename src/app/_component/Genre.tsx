@@ -6,12 +6,12 @@ import Link from "next/link";
 export function GenrePageFilter({
   genreListJson,
 }: {
-  genreListJson: GenreType;
+  genreListJson: GenreType[]; // genreListJson should be an array of GenreType objects
 }) {
   return (
     <div>
       <div>
-        <div className="text-[24px] font-[600] leading-[32px] ">Genres</div>
+        <div className="text-[24px] font-[600] leading-[32px]">Genres</div>
         <div className="text-[16px] font-[400] leading-[24px] mt-1 border-b-[1px] pb-4 border-border">
           <p>See lists of movies by genre</p>
         </div>
@@ -21,7 +21,7 @@ export function GenrePageFilter({
         variant="outline"
         className="flex flex-wrap w-[387px] h-[272px] gap-4 mt-4 justify-start"
       >
-        {genreListJson.map((genre: GenreType) => (
+        {genreListJson.map((genre) => (
           <Link key={genre.id} href={`/genres/${genre.id}`}>
             <ToggleGroupItem
               value={genre.name}
