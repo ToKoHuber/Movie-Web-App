@@ -17,6 +17,9 @@ export type MovieType = {
   type: string;
   name: string;
 };
+
+
+
 export type GenreType = {
   id: number;
   name: string;
