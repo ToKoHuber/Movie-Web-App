@@ -7,6 +7,7 @@ import SearchPagination from "@/app/_component/SearchPagination";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { GenreType, MovieType } from "@/utility/types";
 
 async function getMovies(query: string, page: number) {
   const searchResponse = await fetch(

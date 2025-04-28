@@ -17,8 +17,7 @@ export type MovieType = {
   type: string;
   name: string;
 };
-
-type GenreType = {
+export type GenreType = {
   id: number;
   name: string;
 };
