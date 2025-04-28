@@ -6,6 +6,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { TOKEN } from "@/utility/constants";
+import { GenreType } from "@/utility/types";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 

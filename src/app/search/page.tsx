@@ -3,7 +3,6 @@
 import { TOKEN } from "@/utility/constants";
 import Image from "next/image";
 import Link from "next/link";
-import SearchPagination from "@/app/_component/SearchPagination";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";

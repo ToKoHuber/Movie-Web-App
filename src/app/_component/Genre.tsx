@@ -1,4 +1,5 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { GenreType } from "@/utility/types";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
